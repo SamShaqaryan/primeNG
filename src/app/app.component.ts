@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PrimeIcons } from 'primeng/api';
 import { Posts, UserService } from './user.service';
 import { Users } from './user.service';
 
@@ -16,10 +17,13 @@ export class AppComponent implements OnInit {
 
   constructor(private userService: UserService) { }
 
+
   ngOnInit() {
+
 
     this.userService.getInfo().subscribe(res => {
       this.user = res
+      console.log(this.user)
     })
 
 
@@ -32,6 +36,10 @@ export class AppComponent implements OnInit {
       console.log(event)
     })
   }
+
+
+
+ 
 
 
 }

@@ -47,7 +47,7 @@ getPosts (id:any){
 }
 
 getComments (comment:any) {
-  return this.http.get<Comments[]>('https://jsonplaceholder.typicode.com/posts/'+comment +'/comments?_limit=3')
+  return this.http.get<Comments[]>('https://jsonplaceholder.typicode.com/posts/'+comment+'/comments?_limit=3')
 }
 
 
