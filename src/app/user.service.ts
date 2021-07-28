@@ -19,6 +19,13 @@ export interface Posts {
   body:string
 }
 
+export interface Comments {
+  postId:number,
+  id:number,
+  email:string,
+  body:string
+}
+
 
 
 @Injectable({
@@ -36,9 +43,12 @@ export class UserService {
   }
 
 getPosts (id:any){
-  return this.http.get<Posts[]>('https://jsonplaceholder.typicode.com/user/'+id+'/posts')
+  return this.http.get<Posts[]>('https://jsonplaceholder.typicode.com/user/'+id+'/posts?_limit=3')
 }
 
+getComments (comment:any) {
+  return this.http.get<Comments[]>('https://jsonplaceholder.typicode.com/posts/'+comment +'/comments?_limit=3')
+}
 
 
 

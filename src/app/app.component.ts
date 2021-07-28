@@ -29,6 +29,7 @@ export class AppComponent implements OnInit {
     this.posts = [];
     this.userService.getPosts(event.data.id).subscribe(res => {
       this.posts = res;
+      console.log(event)
     })
   }
 
