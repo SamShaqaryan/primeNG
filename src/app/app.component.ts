@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
-import { Posts, UserService } from './user.service';
+import { Comments, Posts, UserService } from './user.service';
 import { Users } from './user.service';
 
 @Component({
@@ -13,18 +13,22 @@ export class AppComponent implements OnInit {
 
   posts: Posts[] = []
   user: Users[] = []
+ comments:Comments[]=[] 
 
+  constructor(private userService: UserService) {
 
-  constructor(private userService: UserService) { }
-
-
-  ngOnInit() {
 
 
     this.userService.getInfo().subscribe(res => {
       this.user = res
-      console.log(this.user)
+      
     })
+   }
+
+
+  ngOnInit() {
+
+  
 
 
   }
@@ -33,10 +37,20 @@ export class AppComponent implements OnInit {
     this.posts = [];
     this.userService.getPosts(event.data.id).subscribe(res => {
       this.posts = res;
-      console.log(event)
     })
   }
 
+
+  getComments(event:any) {
+    console.log(event)
+    this.comments=[]
+    this.userService.getComments(event.data.id ).subscribe(responese=>{
+      this.comments=responese
+      console.log(this.comments)
+      
+    })
+
+  }
 
 
  

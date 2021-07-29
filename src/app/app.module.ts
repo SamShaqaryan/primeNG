@@ -11,6 +11,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { TagModule } from 'primeng/tag';
 import {TableModule} from 'primeng/table';
 
+
 @NgModule({
   declarations: [
     AppComponent
