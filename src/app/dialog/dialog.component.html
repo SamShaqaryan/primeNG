@@ -1,0 +1,9 @@
+<mat-form-field appearance="fill" [formGroup]="formGroup">
+  <mat-label>Your Name...</mat-label>
+  <input matInput formControlName="name">
+</mat-form-field>
+<button mat-button (click)="submit()">Get Name</button>
+<div mat-dialog-actions>
+  <button mat-dialog-close>No Thanks</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Get Data</button>
+</div>

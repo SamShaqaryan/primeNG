@@ -1,36 +1,50 @@
 import { Component, OnInit } from '@angular/core';
-import { PrimeIcons } from 'primeng/api';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 import { Comments, Posts, UserService } from './user.service';
 import { Users } from './user.service';
+
+interface City {
+  name: string,
+  code: string
+}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
+
 export class AppComponent implements OnInit {
 
+  name:string=''
+  constructor(private userService: UserService,public dialog: MatDialog) {
+ 
+
+    
+
+        this.userService.getInfo().subscribe(res => {
+          this.user = res
+          
+        })
+       }
+
+
+      //  value:number = 0
 
   posts: Posts[] = []
   user: Users[] = []
  comments:Comments[]=[] 
+ dateValue:Date = new Date()
+ 
 
-  constructor(private userService: UserService) {
-
-
-
-    this.userService.getInfo().subscribe(res => {
-      this.user = res
+  getComments(event:any) {
+    this.comments=[]
+    this.userService.getComments(event.data.id ).subscribe(responese=>{
+      this.comments=responese
       
     })
-   }
-
-
-  ngOnInit() {
-
-  
-
-
   }
 
   getPosts(event: any) {
@@ -41,19 +55,22 @@ export class AppComponent implements OnInit {
   }
 
 
-  getComments(event:any) {
-    console.log(event)
-    this.comments=[]
-    this.userService.getComments(event.data.id ).subscribe(responese=>{
-      this.comments=responese
-      console.log(this.comments)
-      
-    })
 
-  }
+ngOnInit(){
 
+}
 
- 
+openDialog() {
+  const dialogConfig = new MatDialogConfig();
+  
+  dialogConfig.width = "60%";
+  const dialogref = this.dialog.open(DialogComponent, {data: {name :this.name}
+  });
 
+  dialogref.afterClosed().subscribe(result=>{
+    console.log(result, 'result')
+    this.name  = result.name
+  })
+}
 
 }
