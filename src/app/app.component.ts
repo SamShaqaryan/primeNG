@@ -19,40 +19,12 @@ interface City {
 export class AppComponent implements OnInit {
 
   name:string=''
-  constructor(private userService: UserService,public dialog: MatDialog) {
+  constructor(public dialog: MatDialog) {
  
-
-    
-
-        this.userService.getInfo().subscribe(res => {
-          this.user = res
-          
-        })
        }
 
 
-      //  value:number = 0
 
-  posts: Posts[] = []
-  user: Users[] = []
- comments:Comments[]=[] 
- dateValue:Date = new Date()
- 
-
-  getComments(event:any) {
-    this.comments=[]
-    this.userService.getComments(event.data.id ).subscribe(responese=>{
-      this.comments=responese
-      
-    })
-  }
-
-  getPosts(event: any) {
-    this.posts = [];
-    this.userService.getPosts(event.data.id).subscribe(res => {
-      this.posts = res;
-    })
-  }
 
 
 
