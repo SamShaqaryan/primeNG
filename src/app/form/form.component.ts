@@ -18,7 +18,7 @@ interface IUser {
 })
 export class FormComponent implements OnInit {
   users: IUser[] = [];
-
+  selectedUser!: IUser;
   constructor(public dialog: MatDialog) {}
 
   onRowSelect(event:any) {
@@ -35,7 +35,9 @@ export class FormComponent implements OnInit {
     const dialogRef = this.dialog.open(DangerComponent );
 
     dialogRef.afterClosed().subscribe((result) => {
-      
+      if(result){
+        this.users = this.users.filter(x=>{x.name!==this.selectedUser.name}) 
+      }
     });
   }
 
