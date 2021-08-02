@@ -1,0 +1,31 @@
+<h3 align="center">Добавить нового пользователя</h3>
+<form class="container" [formGroup]="formGroup">
+    <div class="row">
+      <div class="col-6">
+        <input type="text" class="form-control frmname" placeholder="Имя" formControlName="name">
+      </div>
+      <div class="col-6">
+        <input type="text" class="form-control frmname" placeholder="Фамилия" formControlName="lastName">
+      </div>
+      <div class="col-6">
+           <label for="inp"> Выберите ваш возраст։<span id="inp"> {{formGroup.controls.age.value}} </span></label>
+        <p-slider  formControlName="age" > </p-slider >
+      </div>
+
+      <div class="date"> 
+        <label for="fordt">Дата добавления
+        <input matInput [matDatepicker]="picker" id="fordt" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker> </label>  
+    </div>
+    
+    </div>
+    <div class="btns">
+        <button  [mat-dialog-close]>Закрыть</button>
+
+        <button mat-button (click)="submit()" pButton type="button" class="ui-button-secondary btn-add">Добавить</button>
+    </div>
+
+  </form>
+
+  <!-- dialogref -->

@@ -2,48 +2,42 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { ToggleButtonModule } from 'primeng/togglebutton';
-import { PasswordModule } from 'primeng/password';
-import {GalleriaModule} from 'primeng/galleria';
-import {FileUploadModule} from 'primeng/fileupload';
-import {HttpClientModule} from '@angular/common/http';
-import { TagModule } from 'primeng/tag';
-import {TableModule} from 'primeng/table';
-import {CalendarModule} from 'primeng/calendar';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {DropdownModule} from 'primeng/dropdown';
-import {ProgressBarModule} from 'primeng/progressbar';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { DialogComponent } from './dialog/dialog.component';
 import { DemoMaterialModule } from './shared/mat.module';
+import { TableComponent } from './table/table.component';
+import { DemoPrimeModule } from './shared/prime.module';
+import { MenuComponent } from './menu/menu.component';
+import { FormComponent } from './form/form.component';
+import { FormdialogComponent } from './formdialog/formdialog.component';
+import { AppRoutingModule } from './app-routing.module';
+import { DangerComponent } from './danger/danger.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     DialogComponent,
+    TableComponent,
+    MenuComponent,
+    FormComponent,
+    FormdialogComponent,
+    DangerComponent,
   ],
-  entryComponents:[DialogComponent],
   imports: [
     BrowserModule,
-    PasswordModule,
-    FormsModule,
-    ToggleButtonModule,
-    GalleriaModule,
-    FileUploadModule,
-    TagModule,
-    HttpClientModule,
-    TableModule,
-    CalendarModule,
     BrowserAnimationsModule,
-    ProgressBarModule,
     NgbModule,
-    DropdownModule,
     ReactiveFormsModule,
-    DemoMaterialModule
-    
-    
+    DemoMaterialModule,
+    FormsModule,
+    HttpClientModule,
+    DemoPrimeModule,
+    AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
