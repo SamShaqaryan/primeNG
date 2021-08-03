@@ -55,8 +55,11 @@ export class FormComponent implements OnInit {
   }
   openEditDialog() {
     this.dialog.open(EditdialogComponent, {
-      data: this.selectedUser,
+      data: this.selectedUser,  
+        disableClose: false,
+      
     }).afterClosed().subscribe(result => {
+      if(result)
       this.users[result.id] = result;
       console.log(this.users);
     });
