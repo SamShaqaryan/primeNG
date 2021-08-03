@@ -3,9 +3,9 @@
 <p-table [value]="users" selectionMode="single"  [(selection)]="selectedUser" (onRowSelect)="onRowSelect($event)">
     <ng-template pTemplate="caption" >
         <div class="btnscaption">
-            <button pButton type="button" class="p-button-danger p-button-rounded" (click)="openDangerModal()"  *ngIf="selectedUser">Удалить</button>
-            <button pButton type="button" label="Редактировать" class="p-button-warning p-button-rounded" (click)="openEditDialog()"  *ngIf="selectedUser"></button>
             <button pButton type="button" class="p-button-success p-button-rounded" (click)="showDialog()" >Добавить</button>
+            <button pButton type="button" label="Редактировать" class="p-button-warning p-button-rounded" (click)="openEditDialog()"  *ngIf="selectedUser"></button>
+            <button pButton type="button" class="p-button-danger p-button-rounded" (click)="openDangerModal()"  *ngIf="selectedUser">Удалить</button>
         </div>
    
 

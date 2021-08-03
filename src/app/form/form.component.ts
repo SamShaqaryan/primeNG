@@ -5,7 +5,7 @@ import { DangerComponent } from '../danger/danger.component';
 import { EditdialogComponent } from '../editdialog/editdialog.component';
 import { FormdialogComponent } from '../formdialog/formdialog.component';
 
-interface IUser {
+export interface IUser {
   id: number;
   name: string;
   lastName: string;
@@ -23,27 +23,23 @@ export class FormComponent implements OnInit {
   selectedUser!: IUser;
   constructor(public dialog: MatDialog) {}
 
-  onRowSelect(event: any) {
-  }
+  onRowSelect(event: any) {}
   showDialog() {
-    const dialogRef = this.dialog.open(FormdialogComponent,{ disableClose: false });
-    dialogRef.afterClosed().subscribe((result) => {
-      if(result)
-      this.users.push(result);
-    
-      
+    const dialogRef = this.dialog.open(FormdialogComponent, {
+      disableClose: false,
     });
-
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) this.users.push(result);
+      this.makeIds();
+    });
+    
   }
 
   makeIds() {
     this.users = this.users.map((user, index) => {
       user.id = index;
-      console.log('index', index)
-      console.log(user, 'user ')
       return user;
     });
- 
   }
 
   openDangerModal() {
@@ -51,18 +47,20 @@ export class FormComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.users = this.users.filter(
-          (x) => x.id !== this.selectedUser.id
-        );
-       }
+        this.users = this.users.filter((x) => x.id !== this.selectedUser.id);
+        this.makeIds();
+      }
     });
-    this.makeIds()
-
+    
   }
   openEditDialog() {
-    const dialogRef = this.dialog.open(EditdialogComponent);
+    this.dialog.open(EditdialogComponent, {
+      data: this.selectedUser,
+    }).afterClosed().subscribe(result => {
+      this.users[result.id] = result;
+      console.log(this.users);
+    });
   }
 
   ngOnInit(): void {}
 }
-
