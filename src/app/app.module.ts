@@ -15,6 +15,7 @@ import { FormComponent } from './form/form.component';
 import { FormdialogComponent } from './formdialog/formdialog.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DangerComponent } from './danger/danger.component';
+import { EditdialogComponent } from './editdialog/editdialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { DangerComponent } from './danger/danger.component';
     FormComponent,
     FormdialogComponent,
     DangerComponent,
+    EditdialogComponent,
   ],
   imports: [
     BrowserModule,

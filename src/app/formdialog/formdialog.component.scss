@@ -8,5 +8,8 @@
 }
 
 .date{
-    margin-left: 20px;
+    display: flex;
+    .calendar{
+        margin-top: 20px;
+    }
 }

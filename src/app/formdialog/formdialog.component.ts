@@ -9,8 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class FormdialogComponent implements OnInit {
   public formGroup!: FormGroup;
-  value=''
-  constructor(private dialogRef:MatDialogRef<FormdialogComponent>, private formBuilder: FormBuilder,@Inject(MAT_DIALOG_DATA) public data:{name:string}) {}
+  constructor(private dialogRef:MatDialogRef<FormdialogComponent>, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
