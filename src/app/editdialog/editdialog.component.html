@@ -1,25 +1,48 @@
 <h3 align="center">Измените существующего пользователя</h3>
 <form class="container" [formGroup]="formGroup">
-    <div class="row">
-      <div class="col-6">
-          <label for="name">Измените Имя
-        <input type="text"  id="name" class="form-control frmname"  formControlName="name">
-    </label>
-      </div>
-      <div class="col-6">
-          <label for="lastname">Измените Фамилию
-        <input type="text" class="form-control frmname" id="lastname"  formControlName="lastName">
-    </label>
-      </div>
-      <div class="col-6">
-           <label for="inp"> Измените ваш возраст։<span id="inp"> {{formGroup.controls.age.value }} </span></label>
-        <p-slider  formControlName="age" > </p-slider >
-      </div>
-</div>
-    <div class="btns">
-        <button  [mat-dialog-close]>Закрыть</button>
-
-        <button mat-button (click)="submit()" pButton type="button" class="ui-button-secondary btn-add">Изменить</button>
+  <div class="row">
+    <div class="col-6">
+      <label for="name"
+        >Измените Имя
+        <input
+          type="text"
+          id="name"
+          class="form-control frmname"
+          formControlName="name"
+        />
+      </label>
     </div>
+    <div class="col-6">
+      <label for="lastname"
+        >Измените Фамилию
+        <input
+          type="text"
+          class="form-control frmname"
+          id="lastname"
+          formControlName="lastName"
+        />
+      </label>
+    </div>
+    <div class="col-6">
+      <label for="inp">
+        Измените ваш возраст։<span id="inp">
+          {{ formGroup.controls.age.value }}
+        </span></label
+      >
+      <p-slider formControlName="age"> </p-slider>
+    </div>
+  </div>
+  <div class="btns">
+    <button [mat-dialog-close]>Закрыть</button>
 
-  </form>
+    <button
+      mat-button
+      (click)="submit()"
+      pButton
+      type="button"
+      class="ui-button-secondary btn-add"
+    >
+      Изменить
+    </button>
+  </div>
+</form>

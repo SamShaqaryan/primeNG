@@ -16,6 +16,7 @@ import { FormdialogComponent } from './formdialog/formdialog.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DangerComponent } from './danger/danger.component';
 import { EditdialogComponent } from './editdialog/editdialog.component';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { EditdialogComponent } from './editdialog/editdialog.component';
     FormdialogComponent,
     DangerComponent,
     EditdialogComponent,
+    NotFoundPageComponent,
   ],
   imports: [
     BrowserModule,

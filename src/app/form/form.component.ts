@@ -1,9 +1,9 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DangerComponent } from '../danger/danger.component';
 import { EditdialogComponent } from '../editdialog/editdialog.component';
 import { FormdialogComponent } from '../formdialog/formdialog.component';
+import { LocalStorageService } from '../local-storage.service';
 
 export interface IUser {
   id: number;
@@ -19,9 +19,17 @@ export interface IUser {
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  users: IUser[] = [];
+  users: IUser[] = this.LocalStorageService.data;
   selectedUser!: IUser;
-  constructor(public dialog: MatDialog) {}
+  constructor(
+    public dialog: MatDialog,
+    private LocalStorageService: LocalStorageService
+  ) {
+    
+    LocalStorageService.getChanges.subscribe(res=>{
+      this.users = this.LocalStorageService.data;
+    })
+  }
 
   onRowSelect(event: any) {}
   showDialog() {
@@ -29,16 +37,8 @@ export class FormComponent implements OnInit {
       disableClose: false,
     });
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) this.users.push(result);
-      this.makeIds();
-    });
-    
-  }
-
-  makeIds() {
-    this.users = this.users.map((user, index) => {
-      user.id = index;
-      return user;
+      this.LocalStorageService.create(result);
+     
     });
   }
 
@@ -47,22 +47,23 @@ export class FormComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.users = this.users.filter((x) => x.id !== this.selectedUser.id);
-        this.makeIds();
+       this.LocalStorageService.delete(this.selectedUser.id)
       }
     });
-    
   }
+
+
   openEditDialog() {
-    this.dialog.open(EditdialogComponent, {
-      data: this.selectedUser,  
+    this.dialog
+      .open(EditdialogComponent, {
+        data: this.selectedUser,
         disableClose: false,
-      
-    }).afterClosed().subscribe(result => {
-      if(result)
-      this.users[result.id] = result;
-      console.log(this.users);
-    });
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        console.log(result, "result")
+       this.LocalStorageService.edit(result);
+      });
   }
 
   ngOnInit(): void {}
